@@ -1,19 +1,15 @@
 var app = angular.module("app", ["ui.ace"])
+
 // wrapping assert
 app.factory("assert", function () {
   window.assert = chai.assert;
   return chai.assert ;
 });
+
+// where the code to test and the tests go
 app.factory("env", function () {
   return {
     code: 'function main(){ return 3; } \n\nfunction getExtension(filename){\n\tvar parts = filename.split(".");\n\tif (parts.length > 1)\n\t\treturn parts[1]; \n\telse \n\t\treturn "";\n }',
-    getTests: function () {      
-      var testKeys = Object.keys(this)
-                        .filter(function(k){
-                          return k.indexOf("test_") === 0
-                        });
-      return testKeys.map(function(k){ return this[k] });
-    },
     tests: [ ]
   }
 });
@@ -96,11 +92,8 @@ app.factory("Storage", function () {
 
 app.controller("tester", function ($scope, assert, Test, Storage, env) {
 
-
-
-
   // test suite
-  $scope.env = env;l=env;
+  $scope.env = env;
   $scope.testSuite = env.tests;
 
   $scope.numberOfTests = 0;
@@ -137,14 +130,7 @@ app.controller("tester", function ($scope, assert, Test, Storage, env) {
   }
 
 
-  // fake
-  //$scope.addTest("assert.equal(main(), 3)")
-  //$scope.addTest("assert.equal(getExtension('f.mp4'), 'mp4')")
-  //$scope.addTest("x = 3")
-
-
   // watchers
-  //Storage.retrieveObject(env, "code", "code");
   Storage.retrieveEnvKey($scope, env, "code")
   Object.keys(localStorage)
     .filter(function (k) {
@@ -157,19 +143,5 @@ app.controller("tester", function ($scope, assert, Test, Storage, env) {
         $scope.addTest(v.text)
       }
     })
-  //Storage.retrieveEnvKey($scope, env, "tests")
-  //Storage.retrieveObject(env, "Object.keys(localStorage).filter()code", "env.testSuite");
-  //Storage.updateObject($scope, env.code, "code");
   Storage.updateEnvKey($scope, env, "code")
-  //Storage.updateEnvKey($scope, env, "tests")
-  //Storage.updateObject($scope, env, "env.testSuite");
-  //var testKeys = Object.keys(localStorage).filter(function(k){return k.indexOf("env.tests.") === 0});
-  //testKeys.forEach(function (k) {
-    //Storage.retrieveObject(env, k.slice(4), k);
-  //})
-  //Storage.retrieve($scope, "testSuite");
-  //$scope.$watch("testSuite", function(newValue){
-    //console.log("updating", newValue);
-     //localStorage.setItem("testSuite", newValue);
-  //}, true);
 })
