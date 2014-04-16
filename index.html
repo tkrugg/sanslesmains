@@ -108,12 +108,12 @@
 
     <section class="ace-editor-wrapper">
       <div class="container">
-        <button class="button-green" ng-click="launch()"><span class="icon-play"></span> Run all</button>
+        <button class="button-green" accesskey="r" ng-click="launch()"><span class="icon-play"></span> Run all</button>
         <small><a href="" ng-click="openAll()"> Open all</a> 
           <a href="" ng-click="closeAll()"> Close all</a></small>
         <table>
           <tbody>
-            <tr ng-repeat="test in testSuite" class="test" ng-class="{'test-is-disabled': test.isDisabled}" >
+            <tr ng-repeat="test in env.tests track by $index" class="test" ng-class="{'test-is-disabled': test.isDisabled}" >
               <td>
                 <span class="badge succeeded" ng-show="test.hasSucceeded()"><span class="icon-check"></span></span>
               </td>
