@@ -1,0 +1,24 @@
+{
+  "name": "sanslesmains",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular-ui-ace": "bower",
+    "angular": "~1.2.16",
+    "chai": "~1.9.1",
+    "entypo": "*"
+  },
+  "private": true,
+  "homepage": "https://github.com/tkrugg/sanslesmains",
+  "authors": [
+    "tkrugg <tkrugg@live.fr>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
